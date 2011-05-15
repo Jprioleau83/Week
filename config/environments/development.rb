@@ -23,6 +23,6 @@ Week::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
   
-  config.action_mailer.default_url_options = { :host => 'blazing-fire-858.heroku.com' }
+  config.action_mailer.default_url_options = { :host => 'stormy-leaf-635.heroku.com' }
 end
 
