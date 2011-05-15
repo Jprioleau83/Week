@@ -1,0 +1,12 @@
+
+<h1>Sample Twitter Application</h1>
+    <p>
+      This is the home page for the
+      <a href="http://www.twitter.com">Twitter-like</a>
+      sample application.
+    </p>
+	
+	<%= link_to "Sign up now!", '/users/registration/sign_up', :class => "signup_button round" %>
+  </body>
+</html>
+
