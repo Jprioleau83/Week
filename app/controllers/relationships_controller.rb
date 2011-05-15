@@ -21,5 +21,6 @@ class RelationshipsController < ApplicationController
       format.html { redirect_to @user }
       format.js
     end
+    UserMailer.delete_follower(@user, current_user.name).deliver
   end
 end

@@ -11,18 +11,22 @@ class UserMailer < ActionMailer::Base
     recipients user.email
     from       "jprioleau@scires.com"
     subject    "You have a new follower"
-    body        "#{follower} | is now following you"
+    body        "#{follower} is now following you"
     
     
     
   end
-  default :from => "notifications@example.com"
- 
-  def welcome_email(user)
-    @user = user
-    @url  = "http://example.com/login"
-    mail(:to => user.email,
-         :subject => "Welcome to My Awesome Site")
+  
+  def delete_follower(user, follower)
+    
+    recipients user.email
+    from       "jprioleau@scires.com"
+    subject    "You have a new follower"
+    body        "#{follower} is no longer following you"
+    
+    
+    
   end
+  
   
 end
