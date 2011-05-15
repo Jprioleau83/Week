@@ -9,7 +9,7 @@ class RelationshipsController < ApplicationController
       format.js
     end
     
-    UserMailer.welcome_email(@user).deliver
+    UserMailer.new_follower(@user).deliver
     
   end
 
