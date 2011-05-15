@@ -8,8 +8,9 @@ class RelationshipsController < ApplicationController
       format.html { redirect_to @user }
       format.js
     end
+    follower =  User.find_by_id(params[:followed_id])
     
-    UserMailer.new_follower(@user).deliver
+    UserMailer.new_follower(@user, follower.name).deliver
     
   end
 

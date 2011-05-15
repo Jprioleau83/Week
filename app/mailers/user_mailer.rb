@@ -6,12 +6,12 @@ class UserMailer < ActionMailer::Base
     body       "This is a confirmation that you have registered for the twitter copy site.  Hope you enjoy!"
   end
   
-  def new_follower(user)
+  def new_follower(user, follower)
     
     recipients user.email
     from       "jprioleau@scires.com"
     subject    "You have a new follower"
-    body        "#{user.name} | is now following you"
+    body        "#{follower} | is now following you"
     
     
     
