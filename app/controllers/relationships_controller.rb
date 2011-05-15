@@ -10,7 +10,7 @@ class RelationshipsController < ApplicationController
     end
     follower =  User.find_by_id(params[:followed_id])
     
-    UserMailer.new_follower(@user, follower.name).deliver
+    UserMailer.new_follower(@user, current_user.name).deliver
     
   end
 
