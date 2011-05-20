@@ -1,0 +1,31 @@
+<table class="profile" summary="Profile information">
+  <tr>
+    <td class="main">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+	 
+		
+		
+		<h4>All Messages</h4>
+
+	
+  <table class="microposts" summary="User microposts">
+    <%= render :partial => 'message', :collection => @messages %>
+  </table>
+  <%= will_paginate @messages %>
+
+
+
+    </td>
+    <td class="sidebar round">
+      <strong>Name</strong> <%= @user.name %><br />
+      <strong>URL</strong>  <%= link_to user_path(@user), @user %><br />
+	
+	  <strong>Microposts</strong> <%= @user.microposts.count %>
+	  <%= render 'shared/stats' %>
+	  
+    </td>
+  </tr>
+</table>

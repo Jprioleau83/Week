@@ -193,7 +193,7 @@ div.field, div.actions {
   list-style: square;
 }
 
-/* Index page */
+/* Index pages */
 
 ul.users {
   margin-top: 1em;
@@ -202,6 +202,15 @@ ul.users {
 .users li {
   list-style: none;
 }
+
+ul.messages {
+  margin-top: 1em;
+}
+
+.messages li {
+  list-style: none;
+}
+
 
 /* micropost */
 
@@ -254,9 +263,18 @@ div.user_info span.microposts {
 form.new_micropost {
   margin-bottom: 2em;
 }
-
+/*
 form.new_micropost textarea {
   height: 4em;
   margin-bottom: 0;
 }
 
+new message 
+form.new_message {
+  margin-bottom: 2em;
+}
+
+form.form.new_message textarea {
+  height: 4em;
+  margin-bottom: 0;
+}*/

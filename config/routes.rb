@@ -1,20 +1,33 @@
 Week::Application.routes.draw do
   
+
   devise_for :users
   
   resources :users do
     member do
       get :following, :followers
     end
+    resources :messages, :only => [:create, :destroy, :show, :new, :index ] do
+      resources :replies, :only => [:create, :destroy, :show, :new, :index ] 
+      
+    end
+    
   end
+
   
-   resources :microposts, :only => [:create, :destroy, :show]
+ 
+  resources :microposts, :only => [:create, :destroy, :show]
   resources :relationships, :only => [:create, :destroy]
+  
+  
   
 resources :microposts do
   resources :comments
 end
 resources :comments
+
+
+
 
   root :to => "pages#home"
   match '/contact', :to => 'pages#contact'

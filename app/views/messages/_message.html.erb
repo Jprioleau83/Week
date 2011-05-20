@@ -1,0 +1,27 @@
+<tr>
+  <td class="gravatar">
+    <b>From: </b> <%user = User.find_by_id(message.sender_id)%>
+		<%= gravatar_for user, :size => 30 %>
+  		
+	
+	  </td>
+  <td class="micropost">
+    <span class="user">
+      <%= link_to user.name, user %>
+    </span>
+    <span class="content"><b>Subject: </b>
+
+   <%= 	message.subject %></span>
+    <span class="timestamp">
+      Sent <%= time_ago_in_words(message.created_at) %> ago.
+    </span>
+  </td>
+  <td>
+  <% if current_user?(@user) %>
+  <%= link_to "show", user_message_path(@user, message)  %>
+  | <%= link_to "Delete", user_message_path(@user, message) , :method => :delete, :confirm => "Are you sure?", :title => "Delete #{message.subject}"  %>
+  <% end %>
+  </td>
+</tr>
+
+

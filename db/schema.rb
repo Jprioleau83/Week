@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110514234724) do
+ActiveRecord::Schema.define(:version => 20110518142054) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(:version => 20110514234724) do
 
   add_index "comments", ["micropost_id"], :name => "index_comments_on_micropost_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+
+  create_table "messages", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "sender_id"
+    t.string   "body"
+    t.string   "subject"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -43,14 +52,21 @@ ActiveRecord::Schema.define(:version => 20110514234724) do
   add_index "relationships", ["follower_id", "followed_id"], :name => "index_relationships_on_follower_id_and_followed_id", :unique => true
   add_index "relationships", ["follower_id"], :name => "index_relationships_on_follower_id"
 
+  create_table "replies", :force => true do |t|
+    t.integer  "message_id"
+    t.integer  "user_id"
+    t.integer  "sender_id"
+    t.string   "body"
+    t.string   "subject"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "",    :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
     t.string   "password_salt",                       :default => "",    :null => false
     t.boolean  "admin",                               :default => false
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
@@ -64,7 +80,6 @@ ActiveRecord::Schema.define(:version => 20110514234724) do
     t.string   "name"
   end
 
-  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 

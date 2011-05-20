@@ -1,0 +1,74 @@
+<table class="profile" summary="Profile information">
+  <tr>
+    <td class="main">
+      <h1>
+        <%= gravatar_for current_user %>
+        <%= current_user.name %>
+      </h1>
+	  
+		<br \>
+		
+		     <table class="microposts" summary="User microposts">
+        	<tr>
+        		
+        			<b>Replying to : &nbsp; &nbsp; </b><%user = User.find_by_id(@message.sender_id)%>
+	                
+  				    <%= gravatar_for user, :size => 30 %>
+					&nbsp;
+                    <%= link_to user.name, user %> <br \>
+        			
+        		</tr>
+				<tr style=" padding-top:10px">
+					<br \>
+						<b>Subject: </b>
+
+   					<%= @message.subject %>
+					<br \>
+					<br \>
+				    <b> Original Message: </b><br \>
+  					<textarea rows="10" cols="55" readonly="readonly"><%=  @message.body %></textarea>			
+				</tr>
+        </table>
+<%= form_for([@user, @user.messages.build], :url=>{ :action =>"index", :controller =>"replies"}) do |f| %>
+	<%= render 'shared/error_messages', :object => f.object %>
+    <div class="new_message">
+    <%= f.label :reply %><br />
+    <%= f.text_area :body, :rows => 10, :cols => 55%>
+  </div>
+    
+  
+  
+  <div class="actions">
+    <%= f.submit "Send Reply" %>
+  </div>
+  
+  <div class="field" style=" visibility:hidden;"  >
+   <%= f.text_area :receiver_id, :value => @user.id %>
+   <%= f.text_area :sender_id, :value => current_user.id %>
+  
+  </div>
+  <div class="hidden" style="visibility:hidden;">
+  
+    <%= f.text_field :subject, :value=> @message.subject%>
+  </div>
+  
+  
+<% end %>
+    </td>
+    <td class="sidebar round">
+      <strong>Name</strong> <%= current_user.name %><br />
+      <strong>URL</strong>  <%= link_to user_path(current_user), current_user %>
+	
+	  <strong>Microposts</strong> <%= current_user.microposts.count %>
+	  <%= render 'shared/stats' %>
+	  
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+<li>
+	<%user = User.find_by_id(message.sender_id)%>
+  <%= gravatar_for user, :size => 30 %>
+  <%= link_to user.name, user %>
+<p>
+   <%= 	message.subject %>
+ </p>
+  <% if current_user.admin? %>
+  | <%= link_to "Delete", user, :method => :delete, :confirm => "Are you sure?", :title => "Delete #{user.name}"  %>
+  <% end %>
+</li>

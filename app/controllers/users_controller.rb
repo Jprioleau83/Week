@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   
    def index
     @title = "All users"
+    @user = current_user
     @users = User.paginate(:page => params[:page])
     @users = User.search(params[:search])
   end
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(:page => params[:page])
     @title = @user.name
+    @messages = Message.new
   end
   
    

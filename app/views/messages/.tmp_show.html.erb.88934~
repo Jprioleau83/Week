@@ -1,0 +1,66 @@
+<table class="profile" summary="Profile information">
+  <tr>
+    <td class="main">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+	   <%if !current_user?(@user) %>
+	   <%= link_to 'Message',  new_user_message_path(@user) %>
+	 	<% end %> 
+		
+		
+
+        <table class="microposts" summary="User microposts">
+        	<tr>
+        		
+        			<b>From : &nbsp; &nbsp; </b><%user = User.find_by_id(@message.sender_id)%>
+	                
+  				    <%= gravatar_for user, :size => 30 %>
+					&nbsp;
+                    <%= link_to user.name, user %> <br \>
+        			
+        		</tr>
+				<tr style=" padding-top:10px">
+					<br \>
+					<b>Subject: </b>
+
+   					<%= @message.subject %>
+					
+				    <b> Body: </b>
+  					<textarea readonly="readonly"><%=  @message.body 
+
+							%>
+							
+					</textarea>
+					<br \>
+					<br \>
+				
+					
+					<!--<%= link_to "Reply", new_user_message_path(user) %> <br \>-->
+					<%= link_to "Reply", new_user_message_reply_path(user, @message) %> <br \>
+					
+				</tr>
+        		
+				
+				
+				
+        	
+			
+          
+        </table>
+		
+				
+		
+  
+    </td>
+    <td class="sidebar round">
+      <strong>Name</strong> <%= @user.name %><br />
+      <strong>URL</strong>  <%= link_to user_path(@user), @user %>
+	  <%= link_to "Messages", user_messages_path(@user) %>
+	  <strong>Microposts</strong> <%= @user.microposts.count %>
+	  <%= render 'shared/stats' %>
+	  
+    </td>
+  </tr>
+</table>

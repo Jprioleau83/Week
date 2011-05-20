@@ -1,0 +1,54 @@
+<table class="profile" summary="Profile information">
+  <tr>
+    <td class="main">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+	  
+		<br \>
+		
+	 <%= form_for([@user, @user.messages.build]) do |f| %>
+
+	<%= render 'shared/error_messages', :object => f.object %>
+  <div class="field">
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject %>
+  </div>
+  <div class="new_message">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+    <div class="hidden" style="visibility:hidden;" >
+    <%= f.label :reciever_id %><br />
+   <%= f.hidden_field :receiver_id, :value => @user.id %>
+   <%= f.hidden_field :sender_id, :value => current_user.id %>
+  
+	
+	
+  </div>
+  
+  
+  
+  <div class="actions">
+    <%= f.submit "Send" %>
+  </div>
+<% end %>
+    </td>
+    <td class="sidebar round">
+      <strong>Name</strong> <%= @user.name %><br />
+      <strong>URL</strong>  <%= link_to user_path(@user), @user %>
+	  <%= link_to "Messages", user_messages_path(@user) %>
+	  <strong>Microposts</strong> <%= @user.microposts.count %>
+	  <%= render 'shared/stats' %>
+	  
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+
+
